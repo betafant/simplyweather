@@ -2,38 +2,30 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 List<Weather> parseWeather(String responseBody) {
   final hourly = jsonDecode(responseBody)['hourly'];
-  print(hourly);
   final parsed = hourly.cast<Map<String, dynamic>>();
   return parsed.map<Weather>((json) => Weather.fromJson(json)).toList();
 }
 
 Future<List<Weather>> fetchWeather() async {
   final queryParameters = {
-    'lat': 'CHANGE!',
-    'lon': 'CHANGE!',
+    'lat': 'your latitude',
+    'lon': 'your longitude',
     'exclude': 'current,minutely,daily,alerts',
     'units': 'metric',
-    'appid': 'CHANGE!',
+    'appid': 'your apikey',
   };
 
   final uri =
       Uri.https('api.openweathermap.org', '/data/2.5/onecall', queryParameters);
-  print(uri);
   final response = await http.get(uri);
-  print(response.body);
   if (response.statusCode == 200) {
-    // If the server did return a 200 OK response,
-    // then parse the JSON.
     return compute(parseWeather, response.body);
   } else {
-    // If the server did not return a 200 OK response,
-    // then throw an exception.
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load weather');
   }
 }
 

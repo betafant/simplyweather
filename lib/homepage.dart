@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simplyweather/gridtiles.dart';
@@ -38,7 +36,6 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   setState(() {
                     initiateGrid = CreateGrid();
-                    print('ok');
                   });
                 },
                 child: const Icon(Icons.refresh)),

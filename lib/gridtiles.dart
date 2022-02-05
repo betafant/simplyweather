@@ -11,14 +11,6 @@ class CreateGrid extends StatefulWidget {
 }
 
 class _CreateGridState extends State<CreateGrid> {
-  //late List<Weather> weatherList;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   weatherList = fetchWeather() as List<Weather>;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Weather>>(
